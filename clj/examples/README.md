@@ -1,4 +1,4 @@
-# basics
+# examples
 
 FIXME: description
 
@@ -10,7 +10,7 @@ Download from http://example.com/FIXME.
 
 FIXME: explanation
 
-    $ java -jar basics-0.1.0-standalone.jar [args]
+    $ java -jar examples-0.1.0-standalone.jar [args]
 
 ## Options
 
