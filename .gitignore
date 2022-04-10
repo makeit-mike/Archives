@@ -103,3 +103,6 @@ Cargo.lock
 # CLOJURE
 #######################
 Leiningen.gitignore
+.clj-kondo/
+.calva/
+.lsp/
