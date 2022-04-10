@@ -1,10 +1,15 @@
 (ns algorithms.phone
     (:require [clojure.test :refer :all]))
 
+;; brute force
 (defn create-phone-number [pn]
   (str "(" (collapse-to-str (slice pn 0 3)) ") "
        (collapse-to-str (slice pn 3 3)) "-"
        (collapse-to-str (slice pn 6 4))))
+
+;; cleaner, simpler, better
+(defn create-phone-number2 [nums]
+    (apply format "(%d%d%d) %d%d%d-%d%d%d%d" nums))
 
 ;; ------------------
 ;; Helpers
