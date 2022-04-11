@@ -15,7 +15,7 @@
 ;; Helpers
 ;; ------------------
 
-;; Takes a list and smooshes it into a string.
+;; Takes a list and s mooshes it into a string.
 (defn collapse-to-str [xs]
   (clojure.string/join "" xs))
 
