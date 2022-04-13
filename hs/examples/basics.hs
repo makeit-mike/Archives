@@ -39,7 +39,8 @@ doubleIfGreaterThan x y = if x > y
 myFavList :: [Integer]
 myFavList = [4,8,15,16,23,42]
 
--- Note, using ++ is an o(n) operation, which can add complexity if you are just wanting to add elements to a string or list.
+-- Note, using ++ is an o(n) operation, which can add complexity if you 
+-- are just wanting to add elements to a string or list.
 myOtherList :: [Integer]
 myOtherList = myFavList ++ [1,2,3] --[4,8,15,16,23,42,1,2,3]
 
