@@ -52,9 +52,58 @@ higherOrderQuickSort (x:xs) =
 largestDivisibleNumber = head (filter p [100000,99999..])
     where p x = mod x 3829 == 0
 
+-- chain 5
+-- [5 16 8 4 2 1]
+chain :: (Integral a) => a -> [a]
+chain 1 = [1]
+chain n 
+    | even n = n:chain (div n 2)
+    | odd n = n:chain (n*3 + 1)
 
 ------------------------
 -- Lambdas
 ------------------------
 
 -- Basically, anonymous functions that are used only once.
+
+numLongChains :: Int
+numLongChains = length $ 
+                filter
+                (\xs -> length xs > 15) 
+                (map chain [1..100])
+
+-- Oh that is cool. . . you can define your own operators
+(->>) = flip ($)
+numLongChains' = filter (\xs -> length xs > 15) (map chain [1..100])
+                 ->> length
+
+complexZipWith = zipWith (\a b -> (a * 30 + 3) / b) [5,4..1] [1..5]
+
+complexZipWith' :: [Double] -> [Double] -> [Double]
+complexZipWith' = zipWith (\a b -> (a * 30 + 3) / b)
+
+pot = (+3) -- just let currying handle it all (preffered syntax)
+kettle = \x -> x + 3 -- redundant lambda, avoid
+kettle' x = x + 3 -- explicit definition
+
+-- read.. Pot calling the Kettle black
+black :: Int -> Bool
+black x = (==) (pot x) (kettle x)
+
+patternMatchedLambda = 
+    map (\(a,b) -> a + b) (take 20 $ createTuples [1..]) -- [3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57,60]
+
+-- *Main> patternMatchedNotLambda (take 20 $ createTuples [1,5..])
+-- [3,15,27,39,51,63,75,87,99,111,123,135,147,159,171,183,195,207,219,231]
+patternMatchedNotLambda = map smooshTuples
+
+smooshTuples :: (Num a) => (a,a) -> a
+smooshTuples (x,y) = x + y
+
+-- *Main> take 5 $ createTuples [1..]
+-- [(1,2),(2,4),(3,6),(4,8),(5,10)]
+createTuples :: (Num a) => [a] -> [(a,a)]
+createTuples = map tupleIt
+
+tupleIt :: (Num a) => a -> (a,a)
+tupleIt x = (x, x * 2)
