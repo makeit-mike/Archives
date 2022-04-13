@@ -6,6 +6,11 @@
 ;; c3 - 3 1 4 == 8
 ;; c2 has the most wealth.
 
+(defn max-wealth [c] "[[Int]] -> Int"
+  (->> c
+       (map-sum) ; map #(reduce + %) c
+       (reduce max)))
+
 (defn richest-cust [c] "[[Int]] -> Int"
   (->>
    (map-sum c)
@@ -15,10 +20,11 @@
   (->>
    (apply max c)
    (.indexOf c)))
-
+  
 (defn map-sum [c] "[[Int]] -> [Int]"
   (map #(reduce + %) c))
 
 ;; -------------- TESTING ----------------
 (def x [[1 2 3] [5 5 5] [3 1 4]]) 
 (richest-cust x)
+(max-wealth x)
