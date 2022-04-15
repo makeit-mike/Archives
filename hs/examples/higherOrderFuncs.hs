@@ -107,3 +107,44 @@ createTuples = map tupleIt
 
 tupleIt :: (Num a) => a -> (a,a)
 tupleIt x = (x, x * 2)
+
+------------------------
+-- Folds
+------------------------
+
+-- Folds are like the map function, except they reduce a collection
+-- into a single value. 
+
+-- LEFT FOLD: Accumulator, Value -> Value
+
+sum' :: (Num a) => [a] -> a
+sum' xs = foldl (\acc x -> acc + x) 0 xs
+
+-- same but simplified
+sum'' :: (Num a) => [a] -> a
+sum'' = foldl (+) 0
+
+-- Implementation of elem function
+-- read as
+-- for each item in list, if the item is found, then True
+-- else continue
+-- default value is false
+contains :: (Eq a) => a -> [a] -> Bool
+contains y ys = foldl (\acc x -> if x == y then True else acc) False ys
+
+-- *Main> contains 5 [1..4]
+-- False
+-- *Main> contains 5 [1..5]
+-- True
+
+-- RIGHT FOLD: Value, Accumulator -> Magic
+map' :: (a -> b) -> [a] -> [b] 
+map' f xs = foldr (\x acc -> f x : acc) [] xs
+
+map'' :: (a -> b) -> [a] -> [b] 
+map'' f xs = foldl (\acc x -> f x : acc) [] xs
+
+-- map' (+3) [1 2 3]
+-- (+3) 3 -> 6:[]
+-- (+3) 2 -> 5:[6]
+-- (+3) 1 -> 4:[5 6]
