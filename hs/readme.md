@@ -18,9 +18,10 @@ Algorithms/Code Challenges will come mainly from the following:
 
 ## Project examples
 
-Full fledged examples on how real world programs in Haskell will be stored in examples/projects/
+Full fledged examples on how real world programs in Haskell will be stored in examples/projects/  
 A more indepth roadmap and readme will be stored in this directory.
-Examples include
+
+Examples include:  
 - Parsing JSON
 - Making SQL Calls
 - Effective IO
