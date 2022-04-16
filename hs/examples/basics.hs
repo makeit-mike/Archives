@@ -1,4 +1,4 @@
-import Data.List
+import           Data.List
 
 -- BASICS: ARITHMETIC
 add :: Num a => a -> a -> a
@@ -29,38 +29,43 @@ succMaxPlusOne :: (Num a, Enum a, Ord a) => a -> a -> a -> a
 succMaxPlusOne x y z = succ x + max y z + 1 -- same as (succ x) + (max x y) + 1
 
 doubleIfSmallerThan :: (Ord a, Num a) => a -> a -> a
-doubleIfSmallerThan x y = if x < y then doubleMe x else x
+doubleIfSmallerThan x y =
+  if x < y
+    then doubleMe x
+    else x
 
 doubleIfGreaterThan :: (Ord a, Num a) => a -> a -> a
-doubleIfGreaterThan x y = if x > y
-                            then doubleMe x 
-                            else x
+doubleIfGreaterThan x y =
+  if x > y
+    then doubleMe x
+    else x
+
 --- BASICS: LISTS
 myFavList :: [Integer]
-myFavList = [4,8,15,16,23,42]
+myFavList = [4, 8, 15, 16, 23, 42]
 
--- Note, using ++ is an o(n) operation, which can add complexity if you 
+-- Note, using ++ is an o(n) operation, which can add complexity if you
 -- are just wanting to add elements to a string or list.
 myOtherList :: [Integer]
-myOtherList = myFavList ++ [1,2,3] --[4,8,15,16,23,42,1,2,3]
+myOtherList = myFavList ++ [1, 2, 3] --[4,8,15,16,23,42,1,2,3]
 
 stringsAsList :: [Char]
 stringsAsList = "Hello" ++ "World" -- HelloWorld
 
 stringFromList :: [Char]
-stringFromList = ['l','i','s','t'] ++ [' ','o','k'] -- "list ok"
+stringFromList = ['l', 'i', 's', 't'] ++ [' ', 'o', 'k'] -- "list ok"
 
 appendToBeginning :: [Char]
 appendToBeginning = 'A' : " instantaneous operation"
 
 appendToBeginning' :: [Integer]
-appendToBeginning' = 1 : [2,3,4,5,6]
+appendToBeginning' = 1 : [2, 3, 4, 5, 6]
 
 readingByIndex :: Integer
-readingByIndex = myFavList !! 3  -- returns 4th elm of list
+readingByIndex = myFavList !! 3 -- returns 4th elm of list
 
 listOfLists :: [[Integer]]
-listOfLists = [[1,2,3],[4,5,6],[7,8,9]]
+listOfLists = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
 firstElem :: [a] -> a
 firstElem = head
@@ -98,33 +103,60 @@ addAllInList x = sum x
 multAllInList :: (Foldable t, Num a) => t a -> a
 multAllInList x = product x
 
-containsL :: Eq a => a -> [a] -> Bool  --Something about Type Classes
+containsL :: Eq a => a -> [a] -> Bool --Something about Type Classes
 containsL x y = elem x y
 
 -- BASICS: RANGES
 oneToTwenty :: [Integer]
-oneToTwenty = [1..20]
+oneToTwenty = [1 .. 20]
 
 aToZ :: [Char]
-aToZ = ['a'..'z']
+aToZ = ['a' .. 'z']
 
 evenNumbers :: [Integer]
-evenNumbers = [2,4..]
+evenNumbers = [2,4 ..]
 
 oddNumbers :: [Integer]
-oddNumbers = [1,3..]
+oddNumbers = [1,3 ..]
 
 capAToZ :: [Char]
-capAToZ = ['A'..'Z']
+capAToZ = ['A' .. 'Z']
 
 evenToForty :: [Integer]
-evenToForty = [2,4..40]
+evenToForty = [2,4 .. 40]
 
 someSeries :: [Double]
-someSeries = [0.1, 0.3 .. 1]
+someSeries = [0.1,0.3 .. 1]
 
 circularList :: [Integer]
-circularList = cycle [1,2,3] -- inf list 1,2,3,1,2,3...
+circularList = cycle [1, 2, 3] -- inf list 1,2,3,1,2,3...
 
 infFives :: [Integer]
 infFives = repeat 5
+
+-- Elem Function
+elem' :: (Eq a) => a -> [a] -> Bool
+elem' _ [] = False
+elem' y (x:xs) =
+  if y == x
+    then True
+    else elem' y xs
+
+-- Perhaps a cleaner way to show this
+elem'' :: (Eq a) => a -> [a] -> Bool
+elem'' _ []     = False
+elem'' y (x:xs) = (y == x) || elem' y xs
+
+removeDuplicates :: (Eq a) => [a] -> [a]
+removeDuplicates [] = []
+removeDuplicates (x:xs) =
+  if elem x xs
+    then removeDuplicates xs
+    else x : removeDuplicates xs
+
+-- Probably a cleaner way to show this
+removeDuplicates' :: (Eq a) => [a] -> [a]
+removeDuplicates' [] = []
+removeDuplicates' (x:xs)
+  | elem x xs = removeDuplicates' xs
+  | otherwise = x : removeDuplicates' xs
