@@ -2,30 +2,42 @@
 
 # Example Project Roadmap:
 
-1. Aeson:
-    Parse from text file
-    Parse from web api
-    Write to text file
-    Post to api
+<details>
+    <summary>Aeson</summary>
+    <li>Parse from text file
+    <li>Parse from web api
+    <li>Write to text file
+    <li>Post to api
+</details>
 
-2. PostgreSQL
-    SELECT from DB
-    Parse data from SELECT
-    Multi-line Queries
-    INSERT into DB
-    DELETE from DB
-    CREATE into DB
-    EXEC on DB
+<details>
+    <summary>PostgreSQL</summary>
+    <li>SELECT from DB
+    <li>Multi-line Queries
+    <li>INSERT into DB
+    <li>DELETE from DB
+    <li>CREATE into DB
+    <li>EXEC on DB
+</details>
 
-3. Scotty
-    Boot up on a port
-    Act as GET api
-    Act as POST api
+    
+<details>
+    <summary>Scotty</summary>
+    <li>Boot up on a port
+    <li>Act as GET api
+    <li>Act as POST api
+</details>
+   
 
-4. Yesod / Servant
-    Boot up basic web page
-    counter app
-    call api
-    basic blogging
+<details>
+    <summary>Yesod / Servant</summary>
+    <li>Boot up basic web page
+    <li>counter app
+    <li>call api
+    <li>basic blogging
+</details>
 
-5. Possibly more?  (Persistent/Esqueleto, MTL, Lens, etc.)
+
+<details>
+    <summary> Possibly more?  (Persistent/Esqueleto, MTL, Lens, etc.)</summary>
+</details>
