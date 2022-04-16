@@ -14,6 +14,7 @@ Algorithms/Code Challenges will come mainly from the following:
 - LeetCode (does not support Haskell, but I still enjoy using their platform due to how they set up questions)
 - Other excersizes found in lectures, books. 
 
+<br />
 
 ## Project examples
 
