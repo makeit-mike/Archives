@@ -14,12 +14,14 @@ Algorithms/Code Challenges will come mainly from the following:
 - LeetCode (does not support Haskell, but I still enjoy using their platform due to how they set up questions)
 - Other excersizes found in lectures, books. 
 
+<br />
 
 ## Project examples
 
-Full fledged examples on how real world programs in Haskell will be stored in examples/projects/
+Full fledged examples on how real world programs in Haskell will be stored in examples/projects/  
 A more indepth roadmap and readme will be stored in this directory.
-Examples include
+
+Examples include:  
 - Parsing JSON
 - Making SQL Calls
 - Effective IO
