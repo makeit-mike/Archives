@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 namespace cs;
 public class JsonParsing
 {
+    const string FilePath = "../Data/test.json";
     const string LiteralJson = "{'FirstName':'Michael','Job':'Software Engineer'}";
 
     // Basic Example. For JSON this simple, I normally wouldnt go through the work
@@ -30,7 +31,7 @@ public class JsonParsing
     // view of what your expected JSON looks like. Easier to debug.
     public static void ParseComplexJsonFromFile()
     {
-        var jsonData = File.ReadAllText("test.json");
+        var jsonData = File.ReadAllText(FilePath);
         Console.WriteLine(jsonData);
         Root? glossary = JsonConvert.DeserializeObject<Root>(jsonData);
         Console.WriteLine("Title: " + glossary.Glossary.Title ?? "");
@@ -39,7 +40,7 @@ public class JsonParsing
     // Same thing but you don't have to make a class.
     public static void ParseComplexJsonFromFileDynamic()
     {
-        var jsonData = File.ReadAllText("test.json");
+        var jsonData = File.ReadAllText(FilePath);
         Console.WriteLine(jsonData);
         dynamic glossary = JsonConvert.DeserializeObject(jsonData);
         Console.WriteLine("Title: " + glossary.Glossary.Title ?? "");
