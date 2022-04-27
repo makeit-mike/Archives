@@ -25,6 +25,7 @@ dependencies:
   - filepath
   - containers
   - aeson
+  - directory
 
 library:
   source-dirs: src
