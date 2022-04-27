@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 namespace cs;
 public class JsonParsing
 {
-    const string FilePath = "../Data/test.json";
+    const string FilePath = "../data/test.json";
     const string LiteralJson = "{'FirstName':'Michael','Job':'Software Engineer'}";
 
     // Basic Example. For JSON this simple, I normally wouldnt go through the work
