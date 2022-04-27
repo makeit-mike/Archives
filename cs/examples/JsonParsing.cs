@@ -34,7 +34,7 @@ public class JsonParsing
         var jsonData = File.ReadAllText(FilePath);
         Console.WriteLine(jsonData);
         Root? glossary = JsonConvert.DeserializeObject<Root>(jsonData);
-        Console.WriteLine("Title: " + glossary.Glossary.Title ?? "");
+        Console.WriteLine("Title: " + glossary?.Glossary?.Title ?? "");
     }
 
     // Same thing but you don't have to make a class.
@@ -43,7 +43,7 @@ public class JsonParsing
         var jsonData = File.ReadAllText(FilePath);
         Console.WriteLine(jsonData);
         dynamic glossary = JsonConvert.DeserializeObject(jsonData);
-        Console.WriteLine("Title: " + glossary.Glossary.Title ?? "");
+        Console.WriteLine("Title: " + glossary?.Glossary?.Title ?? "");
     }
 }
 
@@ -59,41 +59,41 @@ public class LiteralJsonObject
 // ----------------------------------------------------------------------------
 public class GlossDef
 {
-    public string para { get; set; }
-    public List<string> GlossSeeAlso { get; set; }
+    public string? para { get; set; }
+    public List<string>? GlossSeeAlso { get; set; }
 }
 
 public class GlossEntry
 {
-    public string ID { get; set; }
-    public string SortAs { get; set; }
-    public string GlossTerm { get; set; }
-    public string Acronym { get; set; }
-    public string Abbrev { get; set; }
-    public GlossDef GlossDef { get; set; }
-    public string GlossSee { get; set; }
+    public string? ID { get; set; }
+    public string? SortAs { get; set; }
+    public string? GlossTerm { get; set; }
+    public string? Acronym { get; set; }
+    public string? Abbrev { get; set; }
+    public GlossDef? GlossDef { get; set; }
+    public string? GlossSee { get; set; }
 }
 
 public class GlossList
 {
-    public GlossEntry GlossEntry { get; set; }
+    public GlossEntry? GlossEntry { get; set; }
 }
 
 public class GlossDiv
 {
-    public string Title { get; set; }
-    public GlossList GlossList { get; set; }
+    public string? Title { get; set; }
+    public GlossList? GlossList { get; set; }
 }
 
 public class Glossary
 {
-    public string Title { get; set; }
-    public GlossDiv GlossDiv { get; set; }
+    public string? Title { get; set; }
+    public GlossDiv? GlossDiv { get; set; }
 }
 
 public class Root
 {
-    public Glossary Glossary { get; set; }
+    public Glossary? Glossary { get; set; }
 }
 
 // ----------------------------------------------------------------------------
