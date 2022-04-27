@@ -4,7 +4,8 @@ using Newtonsoft.Json.Linq;
 namespace cs;
 public class JsonParsing
 {
-    const string FilePath = "../data/test.json";
+    public const string FilePath_Ex1 = "../../data/test.json";
+    public const string FilePath_Ex2 = "../../data/testArray.json";
     const string LiteralJson = "{'FirstName':'Michael','Job':'Software Engineer'}";
 
     // Basic Example. For JSON this simple, I normally wouldnt go through the work
@@ -29,72 +30,41 @@ public class JsonParsing
     // The 'Normal' way I would do things day to day for complex objects.
     // In VS you can "Paste JSON as classes" and always have a statically typed
     // view of what your expected JSON looks like. Easier to debug.
-    public static void ParseComplexJsonFromFile()
+    public static void ParseComplexJsonFromFile_Glossary(string filePath)
     {
-        var jsonData = File.ReadAllText(FilePath);
-        Console.WriteLine(jsonData);
-        Root? glossary = JsonConvert.DeserializeObject<Root>(jsonData);
+        GlossaryJson? glossary = JsonConvert.DeserializeObject<GlossaryJson>(ReadJsonFile(filePath));
         Console.WriteLine("Title: " + glossary?.Glossary?.Title ?? "");
     }
 
-    // Same thing but you don't have to make a class.
-    public static void ParseComplexJsonFromFileDynamic()
+    public static string ReadJsonFile(string filePath)
     {
-        var jsonData = File.ReadAllText(FilePath);
+        var jsonData = File.ReadAllText(filePath);
+        Console.WriteLine(jsonData);
+        return jsonData;
+    }
+
+    public static void ParseComplexJsonFromFile_Array(string filePath)
+    {
+        Root_ArrayEx? data = JsonConvert.DeserializeObject<Root_ArrayEx>(ReadJsonFile(filePath));
+        Console.WriteLine(data.Bots[0].Username);
+        // Console.WriteLine("Title: " + glossary?.Glossary?.Title ?? "");
+    }
+
+    public static void UpdateGlossaryTitle(string filePath)
+    {
+        var jsonData = File.ReadAllText(filePath);
+        var glossary = JsonConvert.DeserializeObject<GlossaryJson>(jsonData);
+        glossary.Glossary.Title = "Some NEW title";
+        //Console.WriteLine("Updated content: " + JsonConvert.SerializeObject(glossary));
+        File.WriteAllText(filePath, JsonConvert.SerializeObject(glossary));
+    }
+
+    // Same thing but you don't have to make a class.
+    public static void ParseComplexJsonFromFileDynamic(string filePath)
+    {
+        var jsonData = File.ReadAllText(filePath);
         Console.WriteLine(jsonData);
         dynamic glossary = JsonConvert.DeserializeObject(jsonData);
         Console.WriteLine("Title: " + glossary?.Glossary?.Title ?? "");
     }
 }
-
-// ----------------------------------------------------------------------------
-
-public class LiteralJsonObject
-{
-    public string? FirstName { get; set; }
-    public string? Job { get; set; }
-}
-
-
-// ----------------------------------------------------------------------------
-public class GlossDef
-{
-    public string? para { get; set; }
-    public List<string>? GlossSeeAlso { get; set; }
-}
-
-public class GlossEntry
-{
-    public string? ID { get; set; }
-    public string? SortAs { get; set; }
-    public string? GlossTerm { get; set; }
-    public string? Acronym { get; set; }
-    public string? Abbrev { get; set; }
-    public GlossDef? GlossDef { get; set; }
-    public string? GlossSee { get; set; }
-}
-
-public class GlossList
-{
-    public GlossEntry? GlossEntry { get; set; }
-}
-
-public class GlossDiv
-{
-    public string? Title { get; set; }
-    public GlossList? GlossList { get; set; }
-}
-
-public class Glossary
-{
-    public string? Title { get; set; }
-    public GlossDiv? GlossDiv { get; set; }
-}
-
-public class Root
-{
-    public Glossary? Glossary { get; set; }
-}
-
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------------------------

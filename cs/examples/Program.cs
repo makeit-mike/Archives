@@ -9,9 +9,19 @@ Console.WriteLine("Program Started");
 // JsonParsing.ParseComplexJsonFromFileDynamic();
 // SumOfDigits.DigitalRoot(234);
 
-Try(() => RestApi.TestConnection_RestSharp().Wait());
+Console.WriteLine("READ JSON FILE");
+JsonParsing.ParseComplexJsonFromFile_Array(JsonParsing.FilePath_Ex2);
 
-Try(() => RestApi.TestConnection_HttpClient().Wait());
+// Console.WriteLine("UPDATE JSON FILE");
+// JsonParsing.UpdateGlossaryTitle();
+
+// Console.WriteLine("READ JSON FILE");
+// JsonParsing.ParseComplexJsonFromFile_Array();
+
+
+// Try(() => RestApi.TestConnection_RestSharp().Wait());
+
+// Try(() => RestApi.TestConnection_HttpClient().Wait());
 
 Console.WriteLine("Program Finished");
 
